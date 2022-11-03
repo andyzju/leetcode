@@ -1,5 +1,7 @@
 package com.alating.alo.leetcode.array;
 
+import java.util.HashMap;
+
 /**
  * https://leetcode.cn/problems/unique-paths/
  *
@@ -34,8 +36,42 @@ public class UniquePaths {
         return dp[m-1][n-1];
     }
 
+
+    public int uniquePathSec(int m, int n){
+        if(m==0 && n==0){
+            return 0;
+        }
+        HashMap<Pair,Integer> map= new HashMap<Pair,Integer>();
+
+        return dfs(map,m-1,n-1);
+
+    }
+    class Pair{
+        private int i;
+        private int j;
+        public Pair(int i,int j){
+            i=i;
+            j=j;
+        }
+    }
+    private int dfs(HashMap<Pair,Integer> map,int i,int j){
+        Pair p=new Pair(i,j);
+        if(map.containsKey(p)){
+            return map.get(p);
+        }
+
+        if(i==0 || j==0){
+            map.put(p,1);
+            return 1;
+        }
+
+        map.put(p,dfs(map,i-1,j) + dfs(map,i,j-1));
+        return map.get(p);
+    }
     public static void main(String args[]){
 
         System.out.println(new UniquePaths().uniquePaths(3,7));
+
+        System.out.println(new UniquePaths().uniquePathSec(3,7));
     }
 }
