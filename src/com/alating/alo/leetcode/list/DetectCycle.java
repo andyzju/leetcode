@@ -31,7 +31,7 @@ public class DetectCycle {
             slow = slow.next;
 
             if (fast == slow) {
-                ListNode ptr = head;
+                ListNode ptr = head; // 这里的操作很关键
                 while (ptr != slow) {
                     ptr = ptr.next;
                     slow = slow.next;

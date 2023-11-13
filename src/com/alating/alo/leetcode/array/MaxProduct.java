@@ -35,7 +35,6 @@ public class MaxProduct {
         for(int i=0;i<nums.length;i++){
             max=Math.max(max,maxF[i]);
         }
-
         return max;
     }
 

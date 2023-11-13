@@ -41,6 +41,11 @@ public class FindMin {
         return -1;
     }
 
+    /**
+     * 方法1， 逐渐比较相邻 <  不是则终端
+     * @param nums
+     * @return
+     */
 
     public int findMin(int[] nums) {
 
@@ -64,9 +69,29 @@ public class FindMin {
         }
     }
 
+
+    public int findMin3(int[] nums) {
+
+        if(nums==null || nums.length==0){
+            return 0;
+        }
+
+        int min=nums[0];
+        for(int i=1;i<nums.length;){
+            if(nums[i]>min){
+                i++;
+            }else{
+                min=nums[i];
+                break;
+            }
+        }
+
+        return min;
+    }
+
     public static void main(String args[]){
 
-        new FindMin().findMin(new int[]{4,5,6,7,0,1,2});
+        System.out.println(new FindMin().findMin(new int[]{4,5,6,7,0,1,2}));
     }
 
 }

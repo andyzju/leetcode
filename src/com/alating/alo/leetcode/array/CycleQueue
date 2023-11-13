@@ -47,12 +47,9 @@ public class CycleQueue implements Queue{
 
     private int capacity;
 
-    private final int min=3;
 
     public CycleQueue(int capacity){
-        if(capacity<=min){
-            capacity=min;
-        }
+
         arr=new Integer[capacity+1];
         this.capacity=capacity;
         front=0;

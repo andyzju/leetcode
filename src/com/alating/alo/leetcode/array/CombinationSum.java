@@ -6,70 +6,58 @@ import java.util.List;
 
 /**
  * https://leetcode.cn/problems/combination-sum/
- *
+ * <p>
  * 组合总和
- *
+ * <p>
+ * 给你一个 无重复元素 的整数数组 candidates 和一个目标整数 target ，找出 candidates 中可以使数字和为目标数 target 的 所有 不同组合 ，并以列表形式返回。你可以按 任意顺序 返回这些组合。
+ * <p>
+ * candidates 中的 同一个 数字可以 无限制重复被选取 。如果至少一个数字的被选数量不同，则两种组合是不同的。
+ * <p>
+ * 对于给定的输入，保证和为 target 的不同组合数少于 150 个。
  */
 public class CombinationSum {
 
 
+    private void dfs(int[] candidates, int target, int beg, int end, List<Integer> ele, List<List<Integer>> res) {
 
-    public void dfsCombinationSum(int[] candidates, int target,
-                                  int beg,int end,
-                                  List<Integer> ele,List<List<Integer>> res){
-        if(target==0){
+        if (target == 0) {
             res.add(new ArrayList<Integer>(ele));
             return;
         }
-        for (int i = beg; i <=end; i++){
 
-            if(candidates[i]>target){  //当前值大，那么这个i 不需要考虑
+
+        for (int i = beg; i <= end; i++) {
+
+            if (candidates[i] > target) {
                 continue;
-            }else{  // candidates[i]<target
+            } else {
+                // 选择i的数据
                 ele.add(candidates[i]);
-                dfsCombinationSum(candidates,target-candidates[i],i,end,ele,res);
-                ele.remove(ele.size()-1);
+                dfs(candidates, target - candidates[i], i, end, ele, res);  // 允许重复i
+
+                // 不选择i的数据
+                ele.remove(ele.size() - 1);
             }
         }
+
+
     }
+
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
 
-        List<List<Integer>> res=new ArrayList<List<Integer>>();
-        List<Integer> ele=new ArrayList<Integer>();
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        List<Integer> ele = new ArrayList<Integer>();
         Arrays.sort(candidates);
 
-        dfsCombinationSum(candidates,target,0,candidates.length-1,ele,res);
-
+        int beg = 0;
+        dfs(candidates, target, beg, candidates.length - 1, ele, res);
         return res;
 
     }
 
-//    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-//        List<List<Integer>> ans = new ArrayList<>(); // 设置保存结果的数组
-//        List<Integer> path = new ArrayList<>(); // 设置保存递归路径的数组
-//        Arrays.sort(candidates);  // 对数组进行排序
-//        find(candidates, 0, candidates.length - 1, target, ans, path);
-//        return ans;
-//    }
-//    public void find(int[] candidates, int start, int end, int target, List<List<Integer>> ans, List<Integer> path) {
-//        if (target == 0) {  // 当target==0时，说明该路径上的数和为目标值，加入结果中
-//            ans.add(new ArrayList<Integer> (path));
-//            return;
-//        }
-//        for (int i = end; i >= start; i--) { // 从大的数往前遍历
-//            if (candidates[i] > target) { // 如果当前数大于目标值，符合的数只能比当前数更小，即前面的位置
-//                continue;
-//            } else {
-//                path.add(candidates[i]);
-//                find(candidates, start, i, target - candidates[i], ans, path);
-//                path.remove(path.size() - 1);
-//            }
-//        }
-//    }
 
+    public static void main(String args[]) {
 
-    public static void main(String args[]){
-
-        System.out.println(new CombinationSum().combinationSum(new int[]{2,3,6,7},7));
+        System.out.println(new CombinationSum().combinationSum(new int[]{2, 3, 6, 7}, 7));
     }
 }

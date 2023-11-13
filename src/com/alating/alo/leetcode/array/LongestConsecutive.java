@@ -28,6 +28,7 @@ public class LongestConsecutive {
 
     /**
      *
+     * 采用hashset来解决问题
      * @param nums
      * @return
      */
@@ -45,13 +46,13 @@ public class LongestConsecutive {
         int max=1;
         // 以 num为开始计算
         for(int num:hashSet){
-            int curStart=num;
+
             int size=1;
 
-            // 如果存在num-1,回头碰到 num-1 开始的还是会计算
+            // 如果存在num-1,回头碰到 num-1 开始的还是会计算，不考虑前面，因为后续还是会计算，只管后续
             if(!hashSet.contains(num-1)){
 
-                while(hashSet.contains(num+1)){
+                while(hashSet.contains(num+1)){  // hashset， 连续的妙用
                     num+=1;
                     size++;
                 }
@@ -62,5 +63,21 @@ public class LongestConsecutive {
         }
 
         return max;
+    }
+
+
+    /**
+     * 最长连续序列
+     * @param nums
+     * @return
+     */
+    public int longestConsecutive2(int[] nums) {
+
+        return 0;
+
+    }
+
+    public static void main(String args[]){
+
     }
 }

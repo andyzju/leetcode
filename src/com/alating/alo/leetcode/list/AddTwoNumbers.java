@@ -10,6 +10,11 @@ import java.util.List;
 public class AddTwoNumbers {
 
 
+    /**
+     * 这种方式容易超出边界
+     * @param head
+     * @return
+     */
     private int getNum(ListNode head){
         if(head==null){
             return 0;
@@ -94,6 +99,9 @@ public class AddTwoNumbers {
             pre=cur;
         }
 
+        /**
+         * 最后一个补充
+         */
         if(carry!=0){
             ListNode cur=new ListNode(carry);
             pre.next=cur;

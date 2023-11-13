@@ -1,5 +1,8 @@
 package com.alating.alo.leetcode.array;
 
+/**
+ * 爬梯子
+ */
 public class ClimbStairs {
 
     public int climbStairs(int n) {

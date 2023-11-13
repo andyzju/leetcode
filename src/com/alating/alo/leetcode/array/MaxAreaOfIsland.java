@@ -8,50 +8,65 @@ package com.alating.alo.leetcode.array;
  */
 public class MaxAreaOfIsland {
 
+
     /**
-     *
+     * 获取面积信息
+     * @param grid
+     * @param x
+     * @param y
+     * @return
+     */
+    private int getArea(int[][] grid, int x,int y){
+        int m=grid.length;
+        int n=grid[0].length;
+        if(x<0 || x>=m || y<0 || y>=n || grid[x][y]!=1){
+            return 0;
+        }
+
+        if(grid[x][y]==2){ // 访问过标记
+            return 0;
+        }
+
+        int sum=1;
+        grid[x][y]=2;
+        sum += getArea(grid,x-1,y);
+        sum += getArea(grid,x+1,y);
+        sum += getArea(grid,x,y-1);
+        sum += getArea(grid,x,y+1);
+
+        return sum;
+
+    }
+
+    /**
+     *  通过递归方式判断
      * @param grid
      * @return
      */
     public int maxAreaOfIsland(int[][] grid) {
 
-        if(grid==null || grid.length==0 || grid[0].length==0){
+        if(grid==null || grid.length==0 ){
             return 0;
         }
 
         int m=grid.length;
         int n=grid[0].length;
-        int dp[][]=new int[m][n];
 
         int max=0;
-
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 if(grid[i][j]==1){
-                    max=Math.max(max,dfs(grid,i,j));
+                    int area=getArea(grid,i,j);
+                    max=Math.max(max,area);
                 }
             }
         }
+
         return max;
+
     }
 
-    public int dfs(int [][]grid, int x,int y){
 
-        if(x<0|| y<0 || x>=grid.length || y>=grid[0].length || grid[x][y]!=1){
-            return 0;
-        }
-
-        // 如果不设置这个，那么会被后续 上下 左右 计算的时候反复重复计算；
-        grid[x][y] = 0;
-        int sum=1;
-
-        sum+=dfs(grid,x-1,y);
-        sum+=dfs(grid,x+1,y);
-        sum+=dfs(grid,x,y-1);
-        sum+=dfs(grid,x,y+1);
-
-        return sum;
-    }
 
     public static void main(String args[]){
         System.out.println(new MaxAreaOfIsland().maxAreaOfIsland(new int[][]{

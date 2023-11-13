@@ -8,6 +8,13 @@ package com.alating.alo.leetcode.array;
 public class FindKthLargest {
 
 
+    /**
+     * 采用类似选择排序的逻辑
+     * 利用冒泡排序的逻辑
+     * @param nums
+     * @param k
+     * @return
+     */
     public int findKthLargest(int[] nums, int k) {
 
         if(nums==null||nums.length==0|| k>nums.length){

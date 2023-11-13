@@ -35,7 +35,7 @@ public class MaxArea {
 
             max = Math.max(max, Math.min(height[l],height[r]) * (r - l));
 
-            if (height[l] < height[r]) {
+            if (height[l] < height[r]) {  // 实际上代表的是移动短板，有可能变大或者不变
                 l++;
             } else {
                 r--;

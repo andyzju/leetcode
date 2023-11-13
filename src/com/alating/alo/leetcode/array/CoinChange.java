@@ -18,7 +18,10 @@ public class CoinChange {
             return 0;
         }
 
+
         int dp[]=new int[amount+1];
+
+        // 初始化
         Arrays.fill(dp,amount+1);
         dp[0]=0;
 

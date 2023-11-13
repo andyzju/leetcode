@@ -41,8 +41,8 @@ public class GenerateParenthesis {
      */
     private void generateAll(char [] com, int pos, List<String> result){
 
-        if(pos== com.length){
-            if(valid(com,pos)){
+        if(pos == com.length){
+            if(valid(com,com.length)){
                 result.add(new String(com));
             }
         }else{

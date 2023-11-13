@@ -73,5 +73,7 @@ public class UniquePaths {
         System.out.println(new UniquePaths().uniquePaths(3,7));
 
         System.out.println(new UniquePaths().uniquePathSec(3,7));
+
+        System.out.println(new UniquePaths().uniquePathSec(51,9));
     }
 }

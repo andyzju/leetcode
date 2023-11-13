@@ -17,42 +17,44 @@ public class LargestNumber {
      */
     public String largestNumber(int[] nums) {
 
-        int n=nums.length;
         if(nums==null || nums.length==0){
             return null;
         }
 
-        Integer[] numArr=new Integer[n];
+        int n= nums.length;
 
-        for(int i=0;i<nums.length;i++){
+        Integer[] numArr = new Integer[n];
+
+        for(int i=0;i<n;i++){
             numArr[i]=nums[i];
         }
 
-        Arrays.sort(numArr,(x,y)->{
-            long sx=10,sy=10;
+        Arrays.sort(numArr, (x,y) ->{
 
-            // sx代表x如果放在后面后需要的乘机数
-            while(sx<=x){
-                sx*=10;
+            long sx=10,sy=10;
+            while (sx <= x) {
+                sx *= 10;
             }
 
-            while (sy<=y){
+            while(sy<=y){
                 sy*=10;
             }
 
-            return (int)((y*sx+x) - (x*sy+y));
+            return (int) (-((x*sy+y)-(y*sx+x)));
         });
 
-        if(numArr[0]==0){
+        if (numArr[0] == 0) {
             return "0";
         }
 
-        StringBuffer ret=new StringBuffer();
+        StringBuffer res=new StringBuffer();
+
         for(int num:numArr){
-            ret.append(num);
+            res.append(num);
         }
 
-        return ret.toString();
+        return res.toString();
+
 
     }
 

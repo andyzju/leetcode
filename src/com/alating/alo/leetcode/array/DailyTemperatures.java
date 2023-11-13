@@ -21,7 +21,7 @@ public class DailyTemperatures {
             int temp=temperatures[i];
             //这里需要非常注意
             // stack中记录的是 下标
-            // 具体的值 通过数组去查询
+            // 具体的值 通过数组去查询， while的精妙运用
             while(!stack.isEmpty() && temp> temperatures[stack.peek()]){
 
                 int idx=stack.pop();
@@ -35,6 +35,8 @@ public class DailyTemperatures {
 
 
     public static void main(String agrs[]){
-        System.out.println(new DailyTemperatures().dailyTemperatures(new int[]{30,40,50,60}));
+       // System.out.println(new DailyTemperatures().dailyTemperatures(new int[]{30,40,50,60}));
+
+        System.out.println(new DailyTemperatures().dailyTemperatures(new int[]{30,29,28,35}));
     }
 }

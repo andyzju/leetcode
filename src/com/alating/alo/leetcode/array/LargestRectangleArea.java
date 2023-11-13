@@ -1,5 +1,7 @@
 package com.alating.alo.leetcode.array;
 
+import java.util.Stack;
+
 /**
  * 最大矩形面积
  *
@@ -8,7 +10,7 @@ package com.alating.alo.leetcode.array;
 public class LargestRectangleArea {
 
     /**
-     * 采用暴力法循环
+     * 采用[暴力法循环]
      * @param heights
      * @return
      */
@@ -65,6 +67,31 @@ public class LargestRectangleArea {
         return 0;
 
     }
+
+
+    int largestRectangleArea2(int[] heights) {
+
+        int ans=0,n=heights.length;
+        Stack<Integer> stk = new Stack<>();
+
+        for(int i=0;i<n;++i){
+            while(!stk.empty()&&heights[i]<heights[stk.peek()]){
+                int cur=stk.peek();
+                stk.pop();
+                int pre=stk.empty()?-1:stk.peek();
+                ans=Math.max(ans,heights[cur]*(i-pre-1));
+            }
+            stk.push(i);
+        }
+        while(!stk.empty()){
+            int cur=stk.peek();
+            stk.pop();
+            int pre=stk.empty()?-1:stk.peek();
+            ans=Math.max(ans,heights[cur]*(n-pre-1));
+        }
+        return ans;
+    }
+
 
     public static void main(String args[]){
 

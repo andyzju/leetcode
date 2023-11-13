@@ -18,7 +18,7 @@ public class MaxProfit {
         }
 
         int minPrice = Integer.MAX_VALUE;
-        int maxProfit=Integer.MIN_VALUE;
+        int maxProfit = Integer.MIN_VALUE;
 
         for(int i=0;i<prices.length;i++){
 
@@ -33,6 +33,11 @@ public class MaxProfit {
 
         return maxProfit;
 
+    }
+
+    public static void main(String args[]){
+
+        System.out.println(new MaxProfit().maxProfit(new int[]{}));
     }
 
 

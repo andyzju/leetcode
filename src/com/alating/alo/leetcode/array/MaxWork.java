@@ -14,7 +14,7 @@ public class MaxWork {
     }
 
 
-    public int work(int []nums,int start,int end){
+    public int work(int [] nums,int start,int end){
 
 
         if(start==end){

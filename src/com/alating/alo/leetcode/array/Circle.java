@@ -22,9 +22,9 @@ public class Circle {
         }
 
         int dp[][]=new int[k+1][n];
-        dp[0][0]=1;
+        dp[0][0]=1; //  啥也不动，一种方法
 
-        for(int i=1;i<n;i++){
+        for(int i=1;i<n;i++){  // 不走动，到非0为止，不存在
             dp[0][i]=0;
         }
 
@@ -33,8 +33,8 @@ public class Circle {
          * 用j步
          */
 
-            for(int j=1;j<=k;j++){
-                for(int i=0;i<=n-1;i++){
+        for(int j=1;j<=k;j++){
+            for(int i=0;i<=n-1;i++){
                 dp[j][i]= dp[j-1][(i+1)%n] + dp[j-1][(i+n-1)%n];
             }
         }
